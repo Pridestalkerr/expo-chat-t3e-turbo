@@ -1,0 +1,38 @@
+{
+  "name": "@acme/server",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "nodemon --exec \"node -r esbuild-register ./src/index.ts\" -e .ts",
+    "clean": "rm -rf dist",
+    "lint": "eslint \"src/**/*.ts*\""
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@acme/eslint-config/base"
+    ]
+  },
+  "devDependencies": {
+    "@acme/eslint-config": "^0.0.0",
+    "@acme/tsconfig": "^0.0.0",
+    "@types/cookie-parser": "^1.4.3",
+    "@types/cors": "^2.8.13",
+    "@types/swagger-ui-express": "^4.1.3",
+    "esbuild-register": "^3.4.2",
+    "nodemon": "^3.0.1"
+  },
+  "dependencies": {
+    "@acme/api": "^0.1.0",
+    "@acme/db": "^0.1.0",
+    "@acme/env": "^0.0.0",
+    "@trpc/server": "^10.35.0",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "swagger-ui-express": "^5.0.0",
+    "trpc-openapi": "^1.2.0"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@acme/api",
+  "version": "0.1.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "devDependencies": {
+    "@acme/eslint-config": "^0.0.0",
+    "@acme/tsconfig": "^0.0.0",
+    "drizzle-kit": "^0.19.10",
+    "eslint": "^8.45.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@acme/db": "^0.1.0",
+    "@acme/env": "^0.0.0",
+    "@trpc/server": "^10.34.0",
+    "argon2": "^0.30.3",
+    "drizzle-orm": "^0.27.2",
+    "postgres": "^3.3.5",
+    "superjson": "^1.9.1",
+    "trpc-openapi": "^1.2.0",
+    "zod": "^3.21.4"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "@acme/eslint-config/base"
+    ]
+  }
+}
