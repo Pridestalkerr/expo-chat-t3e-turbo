@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Pressable, Button, Text, TextInput, View } from "react-native";
 import { Image } from "expo-image";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack, Link, router } from "expo-router";
 import { Appearance, useColorScheme } from "react-native";
 import { DefaultButton } from "~/components/Button";
+import { useToken } from "./_layout";
 // import { FlashList } from "@shopify/flash-list";
 
 // import { api } from "~/utils/api";
@@ -97,8 +98,14 @@ const Index = () => {
   //   onSettled: () => utils.post.all.invalidate(),
   // });
 
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  // const [] = useToken();
+  const { token, setToken } = useToken();
+
+  useEffect(() => {
+    if (token !== "") {
+      router.replace("/dashboard");
+    }
+  }, [token]);
 
   return (
     <SafeAreaView className="bg-[#F7ECDE]">

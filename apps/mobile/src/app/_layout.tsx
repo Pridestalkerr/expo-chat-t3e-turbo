@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Stack } from "expo-router";
+import { Stack, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useContext, createContext } from "react";
 
@@ -21,6 +21,13 @@ export const useToken = () => useContext(tokenContext);
 // It wraps your pages with the providers they need
 const RootLayout = () => {
   const [token, setToken] = React.useState<string>("");
+
+  // ad hoc solution
+  useEffect(() => {
+    if (token !== "") {
+      router.replace("/dashboard");
+    }
+  }, [token]);
 
   useEffect(() => {
     SecureStore.getItemAsync("token")

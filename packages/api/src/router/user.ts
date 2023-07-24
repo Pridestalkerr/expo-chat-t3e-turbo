@@ -29,4 +29,31 @@ export const userRouter = router({
         message: `Hello ${input.name}`,
       };
     }),
+
+  find: publicProcedure
+    .meta({
+      openapi: {
+        method: "GET",
+        path: "/user/find",
+        summary: "Find",
+        description: "Find a user",
+        tags: ["user"],
+      },
+    })
+    .input(
+      z.object({
+        username: z.string(),
+      })
+    )
+    .output(
+      z
+        .object({
+          id: z.string(),
+          username: z.string(),
+        })
+        .or(z.null())
+    )
+    .query(async ({ input }) => {
+      return null;
+    }),
 });

@@ -36,21 +36,19 @@ const Login = () => {
     },
   });
 
-  const { data, refetch } = api.user.sayHello.useQuery({
-    name: watch("username"),
-  });
-
-  const loginMutation = api.auth.login.useMutation({
-    onSuccess: (data) => {
-      setToken(data.token);
-      // router.push("/dashboard");
+  const regsiterMutation = api.auth.register.useMutation({
+    onSuccess: () => {
+      //   setToken(data.token);
+      router.push("/auth/login");
     },
   });
 
   return (
     <SafeAreaView className="bg-[#F7ECDE]">
       {/* Changes page title visible on the header */}
-      <Stack.Screen options={{ title: "Login", headerTintColor: "#F7ECDE" }} />
+      <Stack.Screen
+        options={{ title: "Register", headerTintColor: "#F7ECDE" }}
+      />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
@@ -58,10 +56,10 @@ const Login = () => {
           <View className="w-full flex items-center">
             <Text className="text-[#774360] text-6xl py-8">chattr</Text>
             <Text className="text-3xl font-semibold text-[black]">
-              Welcome back!
+              {"Let's get you started!"}
             </Text>
             <Text className="text-1xl font-semibold text-[black] py-2">
-              You can login below
+              Please, fill in the form below
             </Text>
           </View>
 
@@ -114,20 +112,17 @@ const Login = () => {
           <Pressable
             className="w-full rounded-sm bg-[#774360] flex items-center justify-center p-2 my-1"
             onPress={handleSubmit((data) => {
-              loginMutation.mutate(data);
+              regsiterMutation.mutate(data);
             })}
-            disabled={loginMutation.isLoading}
+            disabled={regsiterMutation.isLoading}
           >
-            <Text className="text-2xl font-bold text-[#F7ECDE]">LOGIN</Text>
+            <Text className="text-2xl font-bold text-[#F7ECDE]">REGISTER</Text>
           </Pressable>
-          {loginMutation.error && (
+          {regsiterMutation.error && (
             <Text className="text-2xl font-bold text-[#ff0000]">
-              Something went wrong... {loginMutation.error.message}
+              Something went wrong... {regsiterMutation.error.message}
             </Text>
           )}
-          <Text className="text-2xl font-bold text-[#000]">
-            {loginMutation.data?.token}
-          </Text>
           {/* </View> */}
         </View>
       </KeyboardAvoidingView>
