@@ -1,4 +1,18 @@
-# create-t3-turbo
+# expo-chat-t3e-turbo
+
+### What is this?
+
+This is a full stack typescript project managed by Turbo and pnpm. It is a highly customized fork of create-t3-turbo.
+The monorepo contains the following packages:
+
+- apps/mobile: Expo application
+- apps/server: Express server deploying swagger and the tRPC backend API
+- packages/config/\*: tailwind, eslint, ts configuration modules
+- packages/env: module that handles typesafe, validated environment variables
+- packages/db: package that manages the postgres database with drizzle-orm
+- packages/api: tRPC api definition as well as openapi interface
+
+### Original README.md
 
 <img width="1758" alt="turbo2" src="https://user-images.githubusercontent.com/51714798/213819392-33e50db9-3e38-4c51-9a22-03abe5e48f3d.png">
 
