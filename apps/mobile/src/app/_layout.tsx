@@ -44,7 +44,6 @@ const RootLayout = () => {
       console.log(err);
     });
   }, [token]);
-  // should usecontext and only modify the state variable instead of retrieving the token manually
 
   return (
     <TRPCProvider>

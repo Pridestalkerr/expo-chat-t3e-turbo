@@ -2,6 +2,9 @@
 import z from "zod";
 import { router } from "../trpc";
 import { publicProcedure } from "../trpc";
+import { db, users } from "@acme/db";
+import { eq } from "drizzle-orm";
+import { TRPCError } from "@trpc/server";
 
 const helloSchema = z.object({
   name: z.string(),
@@ -46,14 +49,26 @@ export const userRouter = router({
       })
     )
     .output(
-      z
-        .object({
-          id: z.string(),
-          username: z.string(),
-        })
-        .or(z.null())
+      z.object({
+        id: z.string(),
+        username: z.string(),
+      })
     )
     .query(async ({ input }) => {
-      return null;
+      const user = await db.query.users.findFirst({
+        where: eq(users.username, input.username),
+      });
+
+      if (!user) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "User not found",
+        });
+      }
+
+      return {
+        id: user.id,
+        username: user.username,
+      };
     }),
 });
